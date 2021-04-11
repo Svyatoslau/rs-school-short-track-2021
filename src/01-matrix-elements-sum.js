@@ -16,15 +16,22 @@
  */
 function getMatrixElementsSum(matrix) {
   let Number = 0;
+  let flag = true;
   for (let i = 0; i < matrix.length; i++) {
     for (let k = 0; k < matrix[i].length; k++) {
-      if (Number.isInteger(matrix[i][k]) && matrix[i][k] !== 0) {
-        for (let p = i + 1; p < matrix[i].length; p++) {
-          if (matrix[p][k] === 0) {
-            Number += matrix[i][k];
-            break;
-          }
+      for (let p = i + 1; p < matrix.length; p++) {
+        if (matrix[p][k] === 0) {
+          flag = false;
+          Number += matrix[i][k];
+          break;
         }
+      }
+    }
+  }
+  if (flag) {
+    for (let i = 0; i < matrix.length; i++) {
+      for (let k = 0; k < matrix[i].length; k++) {
+        Number += matrix[i][k];
       }
     }
   }
